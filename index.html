@@ -100,6 +100,29 @@
     .footer-icons a:hover {
       background-color: #0d47a1;
     }
+
+    /* مودال QR */
+    #qrModal {
+      display: none;
+      position: fixed;
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%, -50%);
+      background: white;
+      padding: 20px;
+      border-radius: 12px;
+      box-shadow: 0 4px 12px rgba(0,0,0,0.3);
+      z-index: 999;
+      text-align: center;
+    }
+
+    #qrModal span.closeBtn {
+      position: absolute;
+      top: 5px;
+      right: 10px;
+      cursor: pointer;
+      font-size: 18px;
+    }
   </style>
   <script src="https://cdnjs.cloudflare.com/ajax/libs/qrcodejs/1.0.0/qrcode.min.js"></script>
 </head>
@@ -118,6 +141,13 @@
     <a href="https://www.unitedpharmacy.sa" target="_blank">🌐 الموقع الإلكتروني</a>
   </div>
 
+  <!-- مودال QR -->
+  <div id="qrModal">
+    <span class="closeBtn" onclick="closeQRModal()">✖</span>
+    <h3 id="qrTitle"></h3>
+    <div id="qrCodeContainer"></div>
+  </div>
+
   <script>
     const pharmacies = [
       ["صيدلية المتحدة 209 - البلد", "+966557216730", "https://wa.me/966557216730", "https://maps.app.goo.gl/u5RDS1Tz29sSchr76?g_st=ipc"],
@@ -130,7 +160,7 @@
       ["صيدلية المتحدة 371-مستوصف الحرمين- الشرفيه", "+966534939258", "https://wa.me/966534939258", "https://maps.app.goo.gl/s2hQVeTvgJFBTSLF8?g_st=ipc"],
       ["صيدلية المتحدة 25-حي الرونه", "+966551337103", "https://wa.me/966551337103", "https://maps.app.goo.gl/RGEd9V2uyWjZzQJu7?g_st=ipc"],
       ["صيدلية المتحدة 175- الرصراص", "+966539643707", "https://wa.me/966539643707", "https://maps.app.goo.gl/f96Rq2GB2FMTtVEE7?g_st=ipc"],
-      ["صيدلية المتحدة 266 -احد رفيده", "+966555037263", "https://wa.me/966555037263", "https://maps.app.goo.gl/mBu6JwxhS6HAyoxN6"],
+      ["صيدلية المتحدة 266 -احد رفيده ", "+966555037263", "https://wa.me/966555037263", "https://maps.app.goo.gl/mBu6JwxhS6HAyoxN6"],
       ["صيدلية المتحدة 179- الموسي", "+966539627072", "https://wa.me/966539627072", "https://maps.app.goo.gl/4WXqgPXCzfJE2tE29?g_st=ipc"],
       ["صيدلية المتحدة 70- الحي الراقي", "+966554576287", "https://wa.me/966554576287", "https://maps.app.goo.gl/ycu9KYV7vxm6475GA?g_st=ipc"],
       ["صيدلية المتحدة 16-الموسي", "+966554390471", "https://wa.me/966554390471", "https://maps.app.goo.gl/1HrFdZPRgGA8PfGXA"],
@@ -153,7 +183,7 @@
             <a class="whatsapp" href="${whatsapp}" target="_blank">💬 واتساب</a>
             <a class="location" href="${location}" target="_blank">📍 موقع</a>
             <button class="share-btn" onclick="sharePharmacy('${name}','${phone}','${whatsapp}','${location}')">📤 مشاركة</button>
-            <button class="qr-btn" onclick="openQRPopup(${index})">🔳 QR</button>
+            <button class="qr-btn" onclick="showQRModal(${index})">🔳 QR</button>
           </div>
         `;
         container.appendChild(card);
@@ -177,26 +207,21 @@
       }
     }
 
-    function openQRPopup(index) {
+    function showQRModal(index) {
       const [name, phone, whatsapp, location] = pharmacies[index];
-      const qrWindow = window.open("", "QR Code", "width=250,height=300");
-      qrWindow.document.write(`
-        <html>
-        <head><title>QR Code</title></head>
-        <body style="display:flex;flex-direction:column;justify-content:center;align-items:center;font-family:Tahoma;text-align:center;">
-          <h3>${name}</h3>
-          <div id="qrcode"></div>
-          <script src="https://cdnjs.cloudflare.com/ajax/libs/qrcodejs/1.0.0/qrcode.min.js"><\/script>
-          <script>
-            new QRCode(document.getElementById("qrcode"), {
-              text: "${name}\\n📞 ${phone}\\n💬 ${whatsapp}\\n📍 ${location}",
-              width: 200,
-              height: 200
-            });
-          <\/script>
-        </body>
-        </html>
-      `);
+      document.getElementById('qrTitle').innerText = name;
+      const container = document.getElementById('qrCodeContainer');
+      container.innerHTML = '';
+      new QRCode(container, {
+        text: `${name}\n📞 ${phone}\n💬 ${whatsapp}\n📍 ${location}`,
+        width: 200,
+        height: 200
+      });
+      document.getElementById('qrModal').style.display = 'block';
+    }
+
+    function closeQRModal() {
+      document.getElementById('qrModal').style.display = 'none';
     }
 
     displayPharmacies(pharmacies);
