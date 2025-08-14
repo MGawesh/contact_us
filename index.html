@@ -1,134 +1,6 @@
 <!DOCTYPE html>
 <html lang="ar">
 <head>
-  <meta charset="UTF-8">
-  <title>فروع صيدليات المتحدة خميس مشيط وأبها</title>
-  <style>
-    body {
-      font-family: 'Tahoma', sans-serif;
-      background-color: #e3f2fd;
-      margin: 0;
-      padding: 20px;
-      direction: rtl;
-      text-align: center;
-    }
-
-    .header-box {
-      background-color: #0d47a1;
-      color: white;
-      padding: 20px;
-      border-radius: 12px;
-      margin-bottom: 20px;
-      box-shadow: 0 4px 12px rgba(0,0,0,0.2);
-    }
-
-    #searchInput {
-      padding: 10px;
-      width: 90%;
-      max-width: 400px;
-      margin: 20px auto 30px;
-      border-radius: 8px;
-      border: 1px solid #ccc;
-      font-size: 16px;
-      display: block;
-    }
-
-    .card {
-      background-color: #fff;
-      border-radius: 16px;
-      box-shadow: 0 4px 12px rgba(0,0,0,0.1);
-      padding: 25px;
-      width: 100%;
-      max-width: 700px;
-      margin: 20px auto;
-      text-align: center;
-      position: relative;
-    }
-
-    .card h2 {
-      font-size: 20px;
-      color: #0d47a1;
-      margin-bottom: 20px;
-    }
-
-    .card .buttons {
-      display: flex;
-      justify-content: center;
-      gap: 10px;
-      flex-wrap: wrap;
-      margin-bottom: 15px;
-    }
-
-    .card a, .card button {
-      text-decoration: none;
-      color: white;
-      padding: 10px 15px;
-      border-radius: 8px;
-      font-size: 16px;
-      min-width: 90px;
-      text-align: center;
-      cursor: pointer;
-    }
-
-    .call { background-color: #007BFF; }
-    .whatsapp { background-color: #25D366; }
-    .location { background-color: #FF5722; }
-    .share-btn { background-color: #673AB7; }
-    .qr-btn { background-color: #FF9800; }
-
-    .footer-icons {
-      margin-top: 50px;
-    }
-
-    .footer-icons a {
-      display: inline-block;
-      margin: 15px 25px;
-      padding: 18px 28px;
-      background-color: #1976D2;
-      color: white;
-      font-size: 20px;
-      text-decoration: none;
-      border-radius: 12px;
-      transition: 0.3s;
-    }
-
-    .footer-icons a:hover {
-      background-color: #0d47a1;
-    }
-
-    /* مودال QR */
-    #qrModal {
-      display: none;
-      position: fixed;
-      top: 50%;
-      left: 50%;
-      transform: translate(-50%, -50%);
-      background: white;
-      padding: 20px 30px;
-      border-radius: 12px;
-      box-shadow: 0 6px 20px rgba(0,0,0,0.4);
-      z-index: 9999;
-      text-align: center;
-      max-width: 90%;
-      width: 300px;
-    }
-
-    #qrModal span.closeBtn {
-      position: absolute;
-      top: 5px;
-      right: 10px;
-      cursor: pointer;
-      font-size: 18px;
-      font-weight: bold;
-    }
-
-    #qrModal h3 {
-      margin-bottom: 15px;
-      font-size: 18px;
-      color: #0d47a1;
-    }
-  </style>
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/qrcodejs/1.0.0/qrcode.min.js"></script>
 <meta charset="UTF-8">
 <title>فروع صيدليات المتحدة خميس مشيط وأبها</title>
 <style>
@@ -140,128 +12,110 @@ body {
   direction: rtl;
   text-align: center;
 }
-.header-box { background-color: #0d47a1; color: white; padding: 20px; border-radius: 12px; margin-bottom: 20px; box-shadow: 0 4px 12px rgba(0,0,0,0.2); }
-#searchInput { padding: 10px; width: 90%; max-width: 400px; margin: 20px auto 30px; border-radius: 8px; border: 1px solid #ccc; font-size: 16px; display: block; }
-.card { background-color: #fff; border-radius: 16px; box-shadow: 0 4px 12px rgba(0,0,0,0.1); padding: 25px; width: 100%; max-width: 700px; margin: 20px auto; text-align: center; }
+.header-box {
+  background-color: #0d47a1;
+  color: white;
+  padding: 20px;
+  border-radius: 12px;
+  margin-bottom: 20px;
+  box-shadow: 0 4px 12px rgba(0,0,0,0.2);
+}
+#searchInput {
+  padding: 10px;
+  width: 90%;
+  max-width: 400px;
+  margin: 20px auto 30px;
+  border-radius: 8px;
+  border: 1px solid #ccc;
+  font-size: 16px;
+  display: block;
+}
+.card {
+  background-color: #fff;
+  border-radius: 16px;
+  box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+  padding: 25px;
+  width: 100%;
+  max-width: 700px;
+  margin: 20px auto;
+  text-align: center;
+}
 .card h2 { font-size: 20px; color: #0d47a1; margin-bottom: 20px; }
 .card .buttons { display: flex; justify-content: center; gap: 10px; flex-wrap: wrap; margin-bottom: 15px; }
-.card a, .card button { text-decoration: none; color: white; padding: 10px 15px; border-radius: 8px; font-size: 16px; min-width: 90px; text-align: center; cursor: pointer; }
-.call { background-color: #007BFF; } .whatsapp { background-color: #25D366; } .location { background-color: #FF5722; } .share-btn { background-color: #673AB7; } .qr-btn { background-color: #FF9800; }
+.card a, .card button {
+  text-decoration: none;
+  color: white;
+  padding: 10px 15px;
+  border-radius: 8px;
+  font-size: 16px;
+  min-width: 90px;
+  text-align: center;
+  cursor: pointer;
+}
+.call { background-color: #007BFF; }
+.whatsapp { background-color: #25D366; }
+.location { background-color: #FF5722; }
+.share-btn { background-color: #673AB7; }
+.qr-btn { background-color: #FF9800; }
+
 .footer-icons { margin-top: 50px; }
-.footer-icons a { display: inline-block; margin: 15px 25px; padding: 18px 28px; background-color: #1976D2; color: white; font-size: 20px; text-decoration: none; border-radius: 12px; transition: 0.3s; }
+.footer-icons a {
+  display: inline-block;
+  margin: 15px 25px;
+  padding: 18px 28px;
+  background-color: #1976D2;
+  color: white;
+  font-size: 20px;
+  text-decoration: none;
+  border-radius: 12px;
+  transition: 0.3s;
+}
 .footer-icons a:hover { background-color: #0d47a1; }
 
 /* مودال QR */
-#qrModal { display: none; position: fixed; top: 50%; left: 50%; transform: translate(-50%, -50%); background: white; padding: 20px 30px; border-radius: 12px; box-shadow: 0 6px 20px rgba(0,0,0,0.4); z-index: 9999; text-align: center; max-width: 90%; width: 300px; }
-#qrModal span.closeBtn { position: absolute; top: 5px; right: 10px; cursor: pointer; font-size: 18px; font-weight: bold; }
+#modalOverlay {
+  display: none;
+  position: fixed;
+  top:0;
+  left:0;
+  width:100%;
+  height:100%;
+  background: rgba(0,0,0,0.4);
+  z-index: 9998;
+}
+#qrModal {
+  display: none;
+  position: fixed;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  background: white;
+  padding: 20px 30px;
+  border-radius: 12px;
+  box-shadow: 0 6px 20px rgba(0,0,0,0.4);
+  z-index: 9999;
+  text-align: center;
+  max-width: 90%;
+  width: 300px;
+}
+#qrModal span.closeBtn {
+  position: absolute;
+  top: 5px;
+  right: 10px;
+  cursor: pointer;
+  font-size: 18px;
+  font-weight: bold;
+}
 #qrModal h3 { margin-bottom: 15px; font-size: 18px; color: #0d47a1; }
-#modalOverlay { display: none; position: fixed; top:0; left:0; width:100%; height:100%; background: rgba(0,0,0,0.4); z-index: 9998; }
 </style>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/qrcodejs/1.0.0/qrcode.min.js"></script>
 </head>
 <body>
 
-  <div class="header-box">
-    <h1>فروع صيدليات المتحدة خميس مشيط وأبها</h1>
-  </div>
-
-  <input type="text" id="searchInput" placeholder="ابحث عن صيدلية..." onkeyup="searchPharmacies()">
-
-  <div id="cards-container"></div>
-
-  <div class="footer-icons">
-    <a href="https://unitedpharmacy.sa/ar/monthly-magazine">📘 مجلة العروض</a>
-    <a href="https://www.unitedpharmacy.sa" target="_blank">🌐 الموقع الإلكتروني</a>
-  </div>
-
-  <!-- مودال QR -->
-  <div id="qrModal">
-    <span class="closeBtn" onclick="closeQRModal()">✖</span>
-    <h3 id="qrTitle"></h3>
-    <div id="qrCodeContainer"></div>
-  </div>
-
-  <script>
-    const pharmacies = [
-      ["صيدلية المتحدة 209 - البلد", "+966557216730", "https://wa.me/966557216730", "https://maps.app.goo.gl/u5RDS1Tz29sSchr76?g_st=ipc"],
-      ["صيدلية المتحدة 46 - حي عتود", "+966552689895", "https://wa.me/966552689895", "https://maps.app.goo.gl/W6QuFENfufWvSema6?g_st=ipc"],
-      ["صيدلية المتحدة 50 - حي الحسام", "+966551208147", "https://wa.me/966551208147", "https://maps.app.goo.gl/YkdHPxT4jZLVuRmc8"],
-      ["صيدلية المتحدة 178- حي الحسام", "+966539657074", "https://wa.me/966539657074", "https://maps.app.goo.gl/Y9EXTLcNwPfdUWAQA"],
-      ["صيدلية المتحدة 337- مستوصف الثمال الطبي", "+966539057750", "https://wa.me/966539057750", "https://maps.app.goo.gl/ariUuFEg348TSY1L8"],
-      ["صيدلية المتحدة 425", "+966556361395", "https://wa.me/966556361395", "https://maps.app.goo.gl/mpSZKFBPfRfWxHmQ9?g_st=ipc"],
-      ["صيدلية المتحدة 265- الشرفيه", "+966555026471", "https://wa.me/966555026471", "https://maps.app.goo.gl/onSHEQxkhyXmJx8p8?g_st=ipc"],
-      ["صيدلية المتحدة 371-مستوصف الحرمين- الشرفيه", "+966534939258", "https://wa.me/966534939258", "https://maps.app.goo.gl/s2hQVeTvgJFBTSLF8?g_st=ipc"],
-      ["صيدلية المتحدة 25-حي الرونه", "+966551337103", "https://wa.me/966551337103", "https://maps.app.goo.gl/RGEd9V2uyWjZzQJu7?g_st=ipc"],
-      ["صيدلية المتحدة 175- الرصراص", "+966539643707", "https://wa.me/966539643707", "https://maps.app.goo.gl/f96Rq2GB2FMTtVEE7?g_st=ipc"],
-      ["صيدلية المتحدة 266 -احد رفيده ", "+966555037263", "https://wa.me/966555037263", "https://maps.app.goo.gl/mBu6JwxhS6HAyoxN6"],
-      ["صيدلية المتحدة 179- الموسي", "+966539627072", "https://wa.me/966539627072", "https://maps.app.goo.gl/4WXqgPXCzfJE2tE29?g_st=ipc"],
-      ["صيدلية المتحدة 70- الحي الراقي", "+966554576287", "https://wa.me/966554576287", "https://maps.app.goo.gl/ycu9KYV7vxm6475GA?g_st=ipc"],
-      ["صيدلية المتحدة 16-الموسي", "+966554390471", "https://wa.me/966554390471", "https://maps.app.goo.gl/1HrFdZPRgGA8PfGXA"],
-      ["صيدلية المتحدة 298", "+966555038569", "https://wa.me/966555038569", "https://maps.app.goo.gl/aEwUUsSWbo3dpxCy6?g_st=ipc"],
-      ["صيدلية المتحدة 176-ابها", "+966552816395", "https://wa.me/966552816395", "https://maps.app.goo.gl/3P8Ti8VCTjpxXaJ8A?g_st=ipc"],
-      ["صيدلية المتحدة 141- ابها", "+966554084738", "https://wa.me/966554084738", "https://maps.app.goo.gl/H7eRT1XoSW6CwJjo8?g_st=ipc"]
-    ];
-
-    const container = document.getElementById("cards-container");
-
-    function displayPharmacies(list) {
-      container.innerHTML = "";
-      list.forEach(([name, phone, whatsapp, location], index) => {
-        const card = document.createElement("div");
-        card.className = "card";
-        card.innerHTML = `
-          <h2>${name}</h2>
-          <div class="buttons">
-            <a class="call" href="tel:${phone}">📞 اتصال</a>
-            <a class="whatsapp" href="${whatsapp}" target="_blank">💬 واتساب</a>
-            <a class="location" href="${location}" target="_blank">📍 موقع</a>
-            <button class="share-btn" onclick="sharePharmacy('${name}','${phone}','${whatsapp}','${location}')">📤 مشاركة</button>
-            <button class="qr-btn" onclick="showQRModal(${index})">🔳 QR</button>
-          </div>
-        `;
-        container.appendChild(card);
-      });
-    }
-
-    function searchPharmacies() {
-      const input = document.getElementById("searchInput").value.toLowerCase();
-      const filtered = pharmacies.filter(([name]) => name.toLowerCase().includes(input));
-      displayPharmacies(filtered);
-    }
-
-    function sharePharmacy(name, phone, whatsapp, location) {
-      if (navigator.share) {
-        navigator.share({
-          title: name,
-          text: `📞 ${phone}\n💬 ${whatsapp}\n📍 ${location}`
-        }).catch(console.error);
-      } else {
-        alert("متصفحك لا يدعم ميزة المشاركة المباشرة");
-      }
-    }
-
-    function showQRModal(index) {
-      const [name, phone, whatsapp, location] = pharmacies[index];
-      document.getElementById('qrTitle').innerText = name;
-      const container = document.getElementById('qrCodeContainer');
-      container.innerHTML = '';
-      new QRCode(container, {
-        text: `${name}\n📞 ${phone}\n💬 ${whatsapp}\n📍 ${location}`,
-        width: 200,
-        height: 200
-      });
-      document.getElementById('qrModal').style.display = 'block';
-    }
-
-    function closeQRModal() {
-      document.getElementById('qrModal').style.display = 'none';
-    }
-
-    displayPharmacies(pharmacies);
-  </script>
 <div class="header-box"><h1>فروع صيدليات المتحدة خميس مشيط وأبها</h1></div>
 <input type="text" id="searchInput" placeholder="ابحث عن صيدلية..." onkeyup="searchPharmacies()">
 <div id="cards-container"></div>
+
 <div class="footer-icons">
   <a href="https://unitedpharmacy.sa/ar/monthly-magazine">📘 مجلة العروض</a>
   <a href="https://www.unitedpharmacy.sa" target="_blank">🌐 الموقع الإلكتروني</a>
@@ -335,7 +189,11 @@ function showQRModal(index) {
   document.getElementById('qrTitle').innerText = name;
   const qrContainer = document.getElementById('qrCodeContainer');
   qrContainer.innerHTML = '';
-  new QRCode(qrContainer, { text: `${name}\n📞 ${phone}\n💬 ${whatsapp}\n📍 ${location}`, width: 200, height: 200 });
+  new QRCode(qrContainer, {
+    text: `${name}\n📞 ${phone}\n💬 ${whatsapp}\n📍 ${location}`,
+    width: 200,
+    height: 200
+  });
   document.getElementById('modalOverlay').style.display = 'block';
   document.getElementById('qrModal').style.display = 'block';
 }
@@ -347,6 +205,5 @@ function closeQRModal() {
 
 displayPharmacies(pharmacies);
 </script>
-
 </body>
 </html>
