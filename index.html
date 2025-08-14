@@ -78,13 +78,8 @@
     .call { background-color: #007BFF; }
     .whatsapp { background-color: #25D366; }
     .location { background-color: #FF5722; }
-    .copy-btn { background-color: #607D8B; }
     .share-btn { background-color: #673AB7; }
     .qr-btn { background-color: #FF9800; }
-
-    .qr-code {
-      margin-top: 10px;
-    }
 
     .footer-icons {
       margin-top: 50px;
@@ -135,7 +130,7 @@
       ["صيدلية المتحدة 371-مستوصف الحرمين- الشرفيه", "+966534939258", "https://wa.me/966534939258", "https://maps.app.goo.gl/s2hQVeTvgJFBTSLF8?g_st=ipc"],
       ["صيدلية المتحدة 25-حي الرونه", "+966551337103", "https://wa.me/966551337103", "https://maps.app.goo.gl/RGEd9V2uyWjZzQJu7?g_st=ipc"],
       ["صيدلية المتحدة 175- الرصراص", "+966539643707", "https://wa.me/966539643707", "https://maps.app.goo.gl/f96Rq2GB2FMTtVEE7?g_st=ipc"],
-      ["صيدلية المتحدة 266 -احد رفيده ", "+966555037263", "https://wa.me/966555037263", "https://maps.app.goo.gl/mBu6JwxhS6HAyoxN6"],
+      ["صيدلية المتحدة 266 -احد رفيده", "+966555037263", "https://wa.me/966555037263", "https://maps.app.goo.gl/mBu6JwxhS6HAyoxN6"],
       ["صيدلية المتحدة 179- الموسي", "+966539627072", "https://wa.me/966539627072", "https://maps.app.goo.gl/4WXqgPXCzfJE2tE29?g_st=ipc"],
       ["صيدلية المتحدة 70- الحي الراقي", "+966554576287", "https://wa.me/966554576287", "https://maps.app.goo.gl/ycu9KYV7vxm6475GA?g_st=ipc"],
       ["صيدلية المتحدة 16-الموسي", "+966554390471", "https://wa.me/966554390471", "https://maps.app.goo.gl/1HrFdZPRgGA8PfGXA"],
@@ -157,11 +152,9 @@
             <a class="call" href="tel:${phone}">📞 اتصال</a>
             <a class="whatsapp" href="${whatsapp}" target="_blank">💬 واتساب</a>
             <a class="location" href="${location}" target="_blank">📍 موقع</a>
-            <button class="copy-btn" onclick="copyRow('${name}','${phone}','${whatsapp}','${location}')">📋 نسخ البيانات</button>
             <button class="share-btn" onclick="sharePharmacy('${name}','${phone}','${whatsapp}','${location}')">📤 مشاركة</button>
-            <button class="qr-btn" onclick="showQRCode(${index})">🔳 QR</button>
+            <button class="qr-btn" onclick="openQRPopup(${index})">🔳 QR</button>
           </div>
-          <div id="qrcode-${index}" class="qr-code"></div>
         `;
         container.appendChild(card);
       });
@@ -171,13 +164,6 @@
       const input = document.getElementById("searchInput").value.toLowerCase();
       const filtered = pharmacies.filter(([name]) => name.toLowerCase().includes(input));
       displayPharmacies(filtered);
-    }
-
-    function copyRow(name, phone, whatsapp, location) {
-      const text = `${name}\n📞 ${phone}\n💬 ${whatsapp}\n📍 ${location}`;
-      navigator.clipboard.writeText(text).then(() => {
-        alert("✅ تم نسخ بيانات الصيدلية");
-      });
     }
 
     function sharePharmacy(name, phone, whatsapp, location) {
@@ -191,16 +177,26 @@
       }
     }
 
-    function showQRCode(index) {
-      const qrDiv = document.getElementById(`qrcode-${index}`);
-      qrDiv.innerHTML = "";
+    function openQRPopup(index) {
       const [name, phone, whatsapp, location] = pharmacies[index];
-      const qrText = `${name}\n📞 ${phone}\n💬 ${whatsapp}\n📍 ${location}`;
-      new QRCode(qrDiv, {
-        text: qrText,
-        width: 120,
-        height: 120
-      });
+      const qrWindow = window.open("", "QR Code", "width=250,height=300");
+      qrWindow.document.write(`
+        <html>
+        <head><title>QR Code</title></head>
+        <body style="display:flex;flex-direction:column;justify-content:center;align-items:center;font-family:Tahoma;text-align:center;">
+          <h3>${name}</h3>
+          <div id="qrcode"></div>
+          <script src="https://cdnjs.cloudflare.com/ajax/libs/qrcodejs/1.0.0/qrcode.min.js"><\/script>
+          <script>
+            new QRCode(document.getElementById("qrcode"), {
+              text: "${name}\\n📞 ${phone}\\n💬 ${whatsapp}\\n📍 ${location}",
+              width: 200,
+              height: 200
+            });
+          <\/script>
+        </body>
+        </html>
+      `);
     }
 
     displayPharmacies(pharmacies);
