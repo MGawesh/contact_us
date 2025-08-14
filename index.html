@@ -42,7 +42,6 @@
       max-width: 700px;
       margin: 20px auto;
       text-align: center;
-      position: relative;
     }
 
     .card h2 {
@@ -91,7 +90,9 @@
       transition: 0.3s;
     }
 
-    .footer-icons a:hover { background-color: #0d47a1; }
+    .footer-icons a:hover {
+      background-color: #0d47a1;
+    }
   </style>
 </head>
 <body>
@@ -157,13 +158,15 @@
     }
 
     function sharePharmacy(name, phone, whatsapp, location) {
+      const shareText = `${name}\n📞 ${phone}\n💬 ${whatsapp}\n📍 ${location}`;
+      
       if (navigator.share) {
         navigator.share({
           title: name,
-          text: `📞 ${phone}\n💬 ${whatsapp}\n📍 ${location}`
+          text: shareText
         }).catch(console.error);
       } else {
-        alert("متصفحك لا يدعم ميزة المشاركة المباشرة");
+        window.open(`https://wa.me/?text=${encodeURIComponent(shareText)}`, '_blank');
       }
     }
 
