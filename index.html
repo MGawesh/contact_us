@@ -35,7 +35,7 @@
     .card p {
         margin: 5px 0;
     }
-    .card button {
+    .card button, .card a {
         margin: 5px;
         padding: 8px 12px;
         border: none;
@@ -43,9 +43,13 @@
         cursor: pointer;
         color: white;
         font-size: 14px;
+        text-decoration: none;
     }
+    .call { background-color: #007BFF; }
+    .whatsapp { background-color: #25D366; }
+    .location { background-color: #FF5722; }
     .share-btn { background-color: #28a745; }
-    .qr-btn { background-color: #007bff; }
+    .qr-btn { background-color: #6c63ff; }
 </style>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/qrcodejs/1.0.0/qrcode.min.js"></script>
 </head>
@@ -57,23 +61,23 @@
 
 <script>
 const pharmacies = [
-    ["صيدلية المتحدة 209 - البلد", "+966557216730", "https://maps.app.goo.gl/u5RDS1Tz29sSchr76?g_st=ipc"],
-    ["صيدلية المتحدة 46 - حي عتود", "+966552689895", "https://maps.app.goo.gl/W6QuFENfufWvSema6?g_st=ipc"],
-    ["صيدلية المتحدة 50 - حي الحسام", "+966551208147", "https://maps.app.goo.gl/YkdHPxT4jZLVuRmc8"],
-    ["صيدلية المتحدة 178- حي الحسام", "+966539657074", "https://maps.app.goo.gl/Y9EXTLcNwPfdUWAQA"],
-    ["صيدلية المتحدة 337- مستوصف الثمال الطبي", "+966539057750", "https://maps.app.goo.gl/ariUuFEg348TSY1L8"],
-    ["صيدلية المتحدة 425", "+966556361395", "https://maps.app.goo.gl/mpSZKFBPfRfWxHmQ9?g_st=ipc"],
-    ["صيدلية المتحدة 265- الشرفيه", "+966555026471", "https://maps.app.goo.gl/onSHEQxkhyXmJx8p8?g_st=ipc"],
-    ["صيدلية المتحدة 371-مستوصف الحرمين- الشرفيه", "+966534939258", "https://maps.app.goo.gl/s2hQVeTvgJFBTSLF8?g_st=ipc"],
-    ["صيدلية المتحدة 25-حي الرونه", "+966551337103", "https://maps.app.goo.gl/RGEd9V2uyWjZzQJu7?g_st=ipc"],
-    ["صيدلية المتحدة 175- الرصراص", "+966539643707", "https://maps.app.goo.gl/f96Rq2GB2FMTtVEE7?g_st=ipc"],
-    ["صيدلية المتحدة 266 -احد رفيده", "+966555037263", "https://maps.app.goo.gl/mBu6JwxhS6HAyoxN6"],
-    ["صيدلية المتحدة 179- الموسي", "+966539627072", "https://maps.app.goo.gl/4WXqgPXCzfJE2tE29?g_st=ipc"],
-    ["صيدلية المتحدة 70- الحي الراقي", "+966554576287", "https://maps.app.goo.gl/ycu9KYV7vxm6475GA?g_st=ipc"],
-    ["صيدلية المتحدة 16-الموسي", "+966554390471", "https://maps.app.goo.gl/1HrFdZPRgGA8PfGXA"],
-    ["صيدلية المتحدة 298", "+966555038569", "https://maps.app.goo.gl/aEwUUsSWbo3dpxCy6?g_st=ipc"],
-    ["صيدلية المتحدة 176-ابها", "+966552816395", "https://maps.app.goo.gl/3P8Ti8VCTjpxXaJ8A?g_st=ipc"],
-    ["صيدلية المتحدة 141- ابها", "+966554084738", "https://maps.app.goo.gl/H7eRT1XoSW6CwJjo8?g_st=ipc"]
+    ["صيدلية المتحدة 209 - البلد", "+966557216730", "https://wa.me/966557216730", "https://maps.app.goo.gl/u5RDS1Tz29sSchr76?g_st=ipc"],
+    ["صيدلية المتحدة 46 - حي عتود", "+966552689895", "https://wa.me/966552689895", "https://maps.app.goo.gl/W6QuFENfufWvSema6?g_st=ipc"],
+    ["صيدلية المتحدة 50 - حي الحسام", "+966551208147", "https://wa.me/966551208147", "https://maps.app.goo.gl/YkdHPxT4jZLVuRmc8"],
+    ["صيدلية المتحدة 178- حي الحسام", "+966539657074", "https://wa.me/966539657074", "https://maps.app.goo.gl/Y9EXTLcNwPfdUWAQA"],
+    ["صيدلية المتحدة 337- مستوصف الثمال الطبي", "+966539057750", "https://wa.me/966539057750", "https://maps.app.goo.gl/ariUuFEg348TSY1L8"],
+    ["صيدلية المتحدة 425", "+966556361395", "https://wa.me/966556361395", "https://maps.app.goo.gl/mpSZKFBPfRfWxHmQ9?g_st=ipc"],
+    ["صيدلية المتحدة 265- الشرفيه", "+966555026471", "https://wa.me/966555026471", "https://maps.app.goo.gl/onSHEQxkhyXmJx8p8?g_st=ipc"],
+    ["صيدلية المتحدة 371-مستوصف الحرمين- الشرفيه", "+966534939258", "https://wa.me/966534939258", "https://maps.app.goo.gl/s2hQVeTvgJFBTSLF8?g_st=ipc"],
+    ["صيدلية المتحدة 25-حي الرونه", "+966551337103", "https://wa.me/966551337103", "https://maps.app.goo.gl/RGEd9V2uyWjZzQJu7?g_st=ipc"],
+    ["صيدلية المتحدة 175- الرصراص", "+966539643707", "https://wa.me/966539643707", "https://maps.app.goo.gl/f96Rq2GB2FMTtVEE7?g_st=ipc"],
+    ["صيدلية المتحدة 266 -احد رفيده", "+966555037263", "https://wa.me/966555037263", "https://maps.app.goo.gl/mBu6JwxhS6HAyoxN6"],
+    ["صيدلية المتحدة 179- الموسي", "+966539627072", "https://wa.me/966539627072", "https://maps.app.goo.gl/4WXqgPXCzfJE2tE29?g_st=ipc"],
+    ["صيدلية المتحدة 70- الحي الراقي", "+966554576287", "https://wa.me/966554576287", "https://maps.app.goo.gl/ycu9KYV7vxm6475GA?g_st=ipc"],
+    ["صيدلية المتحدة 16-الموسي", "+966554390471", "https://wa.me/966554390471", "https://maps.app.goo.gl/1HrFdZPRgGA8PfGXA"],
+    ["صيدلية المتحدة 298", "+966555038569", "https://wa.me/966555038569", "https://maps.app.goo.gl/aEwUUsSWbo3dpxCy6?g_st=ipc"],
+    ["صيدلية المتحدة 176-ابها", "+966552816395", "https://wa.me/966552816395", "https://maps.app.goo.gl/3P8Ti8VCTjpxXaJ8A?g_st=ipc"],
+    ["صيدلية المتحدة 141- ابها", "+966554084738", "https://wa.me/966554084738", "https://maps.app.goo.gl/H7eRT1XoSW6CwJjo8?g_st=ipc"]
 ];
 
 const container = document.getElementById("pharmacies");
@@ -82,7 +86,7 @@ function shareData(pharmacy) {
     if (navigator.share) {
         navigator.share({
             title: pharmacy[0],
-            text: `📍 ${pharmacy[0]}\n📞 ${pharmacy[1]}\n📌 الموقع: ${pharmacy[2]}`
+            text: `📍 ${pharmacy[0]}\n📞 ${pharmacy[1]}\n💬 واتساب: ${pharmacy[2]}\n📌 الموقع: ${pharmacy[3]}`
         });
     } else {
         alert("ميزة المشاركة غير مدعومة في هذا المتصفح.");
@@ -99,7 +103,7 @@ function showQR(pharmacy) {
             <div id="qrcode"></div>
             <script src="https://cdnjs.cloudflare.com/ajax/libs/qrcodejs/1.0.0/qrcode.min.js"><\/script>
             <script>
-                new QRCode(document.getElementById("qrcode"), "${pharmacy[2]}");
+                new QRCode(document.getElementById("qrcode"), "${pharmacy[3]}");
             <\/script>
         </body>
         </html>
@@ -112,8 +116,13 @@ pharmacies.forEach(pharmacy => {
     card.innerHTML = `
         <h3>${pharmacy[0]}</h3>
         <p>📞 ${pharmacy[1]}</p>
-        <button class="share-btn" onclick='shareData(${JSON.stringify(pharmacy)})'>مشاركة البيانات</button>
-        <button class="qr-btn" onclick='showQR(${JSON.stringify(pharmacy)})'>عرض QR</button>
+        <div>
+            <a class="call" href="tel:${pharmacy[1]}">📞 اتصال</a>
+            <a class="whatsapp" href="${pharmacy[2]}" target="_blank">💬 واتساب</a>
+            <a class="location" href="${pharmacy[3]}" target="_blank">📍 موقع</a>
+            <button class="share-btn" onclick='shareData(${JSON.stringify(pharmacy)})'>مشاركة البيانات</button>
+            <button class="qr-btn" onclick='showQR(${JSON.stringify(pharmacy)})'>عرض QR</button>
+        </div>
     `;
     container.appendChild(card);
 });
